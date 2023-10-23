@@ -1,50 +1,34 @@
-<!-- <template>
+<template>
   <div>
-    <h1>Film Page</h1>
+    <h1>actors Page</h1>
     <ul>
-      <li v-for="(film, index) in films" :key="index">
-        {{ film.title }} ({{ film.release_year }})
+      <li v-for="(actor, index) in actors" :key="index">
+        {{ actor.first_name }} ({{ actor.last_name }})
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   data() {
     return {
-      films: [],
+      actors: [],
     };
   },
-  mounted() {
-    this.fetchFilms();
+  async mounted() {
+    await this.fetchActors();
   },
   methods: {
   // 
+  async fetchActors() {
+      try {
+        const rest = await this.$axios.get('api/actors')
+        this.actors = rest.data.data
+      } catch (error) {
+        console.log(error)
+      }
+    }
   },
 };
 </script>
-  async fetchFilms() {
-  //     try {
-  //       const url = 'http://localhost:3000/api/actors';
-  //       const token = localStorage.getItem('accessToken');
-
-  //       const config = {
-  //         headers: {
-  //           'Authorization': `Bearer ${token}`
-  //         }
-  //       }
-  //       axios.get(url, config)
-  // .then(response => {
-  //   // Handle the API response here
-  //   console.log(response.data);
-  // })
-  // .catch(error => {
-  //   // Handle any errors here
-  //   console.error(error);
-  // });
-
-   
-  //   }, -->

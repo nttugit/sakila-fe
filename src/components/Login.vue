@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "Login",
   data() {
@@ -42,12 +40,12 @@ export default {
       };
       // console.log(data);
 
-      axios
-        .post("http://localhost:3000/api/auth/login", data)
+      this.$axios
+        .post("api/auth/login", data)
         .then((res) => {
           // const { refreshToken } = res?.data.data;
           // console.log(res.data.refreshToken);
-          const { refreshToken, accessToken } = res.data;
+          const { refreshToken, accessToken } = res.data.data;
           if (accessToken && refreshToken) {
             localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
             localStorage.setItem("accessToken", JSON.stringify(accessToken));

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   name: "Register",
   data() {
@@ -44,20 +44,31 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       const data = {
         username: this.username,
         password: this.password,
-        confirmPassword: this.confirmPassword,
       };
-      console.log(data);
-
-      axios
-        .post("http://localhost:3000/register", data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => console.log(err));
+      try {
+        if(this.password !== this.confirmPassword) return alert("Mật khẩu nhập lại không khớp")
+        const res = await this.$axios.post("api/auth/register", data)
+        if(res.data.data?.username) {
+          const loginRes = await this.$axios.post("api/auth/login", {
+            username: this.username,
+            password: this.password,
+          })
+          const { refreshToken, accessToken, user } = loginRes.data.data;
+          if (accessToken && refreshToken) {
+            localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
+            localStorage.setItem("accessToken", JSON.stringify(accessToken));
+            localStorage.setItem("userName", user.username);
+            await this.$router.push("/actors");
+            window?.location.reload(true)
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 };

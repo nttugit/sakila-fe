@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="register">
     <h3>Sign up</h3>
     <div class="form-group">
       <label for="">Username</label>
@@ -44,30 +44,27 @@ export default {
     };
   },
   methods: {
-    async handleSubmit() {
+    async register() {
       const data = {
         username: this.username,
         password: this.password,
       };
       try {
-        if(this.password !== this.confirmPassword) return alert("Mật khẩu nhập lại không khớp")
-        const res = await this.$axios.post("api/auth/register", data)
-        if(res.data.data?.username) {
-          const loginRes = await this.$axios.post("api/auth/login", {
-            username: this.username,
-            password: this.password,
-          })
-          const { refreshToken, accessToken, user } = loginRes.data.data;
-          if (accessToken && refreshToken) {
-            localStorage.setItem("refreshToken", JSON.stringify(refreshToken));
-            localStorage.setItem("accessToken", JSON.stringify(accessToken));
-            localStorage.setItem("userName", user.username);
-            await this.$router.push("/actors");
-            window?.location.reload(true)
-          }
+        if (this.password !== this.confirmPassword)
+          return alert("Mật khẩu nhập lại không khớp");
+        const res = await this.$axios.post("api/auth/register", data);
+        if (res.data.data?.username) {
+          this.$router.push("/login");
+        } else {
+          console.log(res);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error?.response.data);
+        const message =
+          typeof error?.response.data.message == "object"
+            ? error?.response.data.message[0].message
+            : error?.response.data.message;
+        return alert(message);
       }
     },
   },

@@ -1,9 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router.js';
-
+import authStore from './store/auth.js';
 import appAxios from './plugins/appAxios'
-createApp(App)
-    .use(appAxios)
-    .use(router) // Use the router
-    .mount('#app');
+
+const app = createApp(App);
+
+app.use(appAxios);
+app.use(authStore);
+app.use(router);
+
+app.mount('#app');

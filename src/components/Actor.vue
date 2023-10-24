@@ -1,10 +1,18 @@
 <template>
   <div>
-    <h1>Actors Page</h1>
+    <h1>Actors</h1>
     <ul>
-      <li v-for="(actor, index) in actors" :key="index">
-        {{ actor.first_name }} ({{ actor.last_name }})
-      </li>
+      <ol v-for="(actor, index) in actors" :key="index">
+        {{
+          index + 1
+        }}.
+        {{
+          actor.first_name
+        }}
+        {{
+          actor.last_name
+        }}
+      </ol>
     </ul>
   </div>
 </template>
@@ -20,16 +28,15 @@ export default {
     await this.fetchActors();
   },
   methods: {
-  // 
-  async fetchActors() {
+    //
+    async fetchActors() {
       try {
-        const rest = await this.$axios.get('api/actors')
-        console.log("11111",{rest})
-        this.actors = rest.data.data
+        const rest = await this.$axios.get("api/actors");
+        this.actors = rest.data.data;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    },
   },
 };
 </script>

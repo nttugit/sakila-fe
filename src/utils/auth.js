@@ -1,5 +1,3 @@
-// import jwt from 'jsonwebtoken';
-
 export function setAccessToken(token) {
     localStorage.setItem('accessToken', token);
 }
@@ -18,4 +16,5 @@ export function getRefreshToken() {
 
 export function logout() {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
 }

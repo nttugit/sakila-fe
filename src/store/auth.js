@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createStore } from 'vuex'
-import APIs from "../constants/endpoint.js";
+import APIs from "../constants/api.js";
 import * as authHandler from '../utils/auth.js';
 
 

@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import APIs from "../constants/api.js";
 export default {
   data() {
     return {
@@ -31,8 +32,8 @@ export default {
     //
     async fetchActors() {
       try {
-        const rest = await this.$axios.get("api/actors");
-        this.actors = rest.data.data;
+        const response = await this.$axios.get(APIs.ACTOR.LIST);
+        this.actors = response.data.data;
       } catch (error) {
         console.log(error);
       }

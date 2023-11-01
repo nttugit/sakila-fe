@@ -6,6 +6,7 @@ import Film from './components/Film.vue';
 // import isTokenExpired from './utils/isTokenExpired'
 // import axios from 'axios';
 import Actor from './components/Actor.vue';
+import Category from './components/Category.vue';
 import store from './store/auth.js';
 
 const requireAuth = (to, from, next) => {
@@ -44,6 +45,12 @@ const routes = [
         component: Actor,
         name: 'Actor',
         beforeEnter: requireAuth,
+    },
+    {
+        path: '/categories',
+        component: Category,
+        name: 'Category',
+        // beforeEnter: requireAuth,
     },
     {
         path: '/logout',

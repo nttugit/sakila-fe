@@ -10,7 +10,10 @@ const APIs = {
     FILM: {
         LIST: 'api/films',
         // LIST_FROM_B: 'api/films/from-b'
-    }
+    },
+    CATEGORY: {
+        LIST: 'api/categories'
+    },
 }
 
 export default APIs;

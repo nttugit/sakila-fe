@@ -1,19 +1,23 @@
 <template>
   <div>
     <h1>Actors</h1>
-    <ul>
-      <ol v-for="(actor, index) in actors" :key="index">
-        {{
-          index + 1
-        }}.
-        {{
-          actor.first_name
-        }}
-        {{
-          actor.last_name
-        }}
-      </ol>
-    </ul>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <!-- <th scope="col">Last Name</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(actor, index) in actors" :key="index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ actor.first_name + " " + actor.last_name }}</td>
+          <!-- <td>{{ actor.last_name }}</td> -->
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 

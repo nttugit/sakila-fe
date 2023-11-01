@@ -1,12 +1,24 @@
 <template>
   <div>
     <h1>Films</h1>
-    <ul>
-      <li v-for="(film, index) in films" :key="index">
-        {{ film.title }} ({{ film.release_year }}, {{ film.special_features }},
-        {{ film.length }})
-      </li>
-    </ul>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Release Year</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(film, index) in films" :key="index">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ film.title }}</td>
+          <td>{{ film.release_year }}</td>
+          <td>{{ film?.rating || "N/A" }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -26,17 +38,9 @@ export default {
     async fetchFilms() {
       try {
         // server a
-        // const response = await fetch("http://localhost:3000/api/films/from-b");
-        console.log("api: ", APIs.FILM.LIST);
+        console.log("Film API: ", APIs.FILM.LIST);
         const response = await this.$axios.get(APIs.FILM.LIST);
         this.films = response.data.data;
-        console.log("response", response.data.data);
-
-        // if (response.ok) {
-        //   this.films = await response.json();
-        // } else {
-        //   console.error("Failed to fetch films");
-        // }
       } catch (error) {
         console.error("Error:", error);
       }

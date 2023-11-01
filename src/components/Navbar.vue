@@ -16,6 +16,9 @@
           <li v-if="isLoggedIn" class="nav-item">
             <a href="/films" class="nav-link">Films</a>
           </li>
+          <li class="nav-item">
+            <a href="/categories" class="nav-link">Categories</a>
+          </li>
           <div v-if="isLoggedIn" class="dropdown">
             <!-- <button class="dropbtn">{{ userName }}</button> -->
             <a href="/profile" class="nav-link">{{ userName }}</a>

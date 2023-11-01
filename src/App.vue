@@ -73,8 +73,9 @@ html,
 }
 
 .auth-inner {
-  width: 450px;
-  /* width: auto; */
+  /* width: 450px; */
+  width: auto;
+  /* width: 600px; */
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);

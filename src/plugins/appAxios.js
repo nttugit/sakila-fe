@@ -2,23 +2,20 @@ import axios from 'axios';
 import isTokenExpired from '../utils/isTokenExpired'
 
 const $axios = axios
+// Config access token và refresh token cho axios mỗi lần gọi API
 let accessToken = localStorage.getItem("accessToken")?.replaceAll('"', '') || '';
-
 if (accessToken && isTokenExpired(accessToken)) {
   try {
     const refreshToken = localStorage.getItem("refreshToken")?.replaceAll('"', '');
-    console.log('refreshToken', refreshToken)
     const res = await axios.request("http://localhost:3000/api/auth/refresh", {
       method: 'post',
       data: { refreshToken },
       headers: { 'Authorization': `Bearer ${accessToken}` }
     })
-    console.log('res.data', res.data)
     if (res.data.success && typeof res.data.data === 'string') {
       localStorage.setItem("accessToken", res.data.data)
       accessToken = res.data.data
     }
-    console.log('refreshToken', refreshToken)
   } catch (error) {
     console.log(error)
   }

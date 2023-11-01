@@ -35,7 +35,7 @@ const store = createStore({
             localStorage.setItem("userName", user.username);
         },
         logout({ commit }) {
-            commit('LOGOUT');   
+            commit('LOGOUT');
         },
     },
     getters: {

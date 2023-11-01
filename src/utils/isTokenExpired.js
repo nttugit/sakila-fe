@@ -3,7 +3,7 @@
  * @param {string} token 
  * @returns {Bolean}
  */
-
+// 
 function isTokenExpired(token) {
   if (!token) return false
   const base64Url = token.split(".")[1];
@@ -17,9 +17,12 @@ function isTokenExpired(token) {
       .join("")
   );
   const { exp } = JSON.parse(jsonPayload);
+  console.log(JSON.parse(jsonPayload))
   const expired = Date.now() >= exp * 1000
   return expired
 }
+
+// This script for testing purposes
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJuYW1lIjoibnR0dTMifSwiaWF0IjoxNjk4MTQxNTM4LCJleHAiOjE2OTgxNDE1Njh9.lTnUQfmqmRMJcsZtCDnQ05sIMmqvCxyOETKaILXokN0";
 // console.log(isTokenExpired(token))
 export default isTokenExpired

@@ -21,7 +21,7 @@ const routes = [
         path: '/',
         component: Home,
         name: 'Home',
-        // beforeEnter: requireAuth,
+        beforeEnter: requireAuth,
     },
     {
         path: '/login',
@@ -51,7 +51,6 @@ const routes = [
         name: 'Logout',
     },
 ]
-
 
 
 const router = createRouter({

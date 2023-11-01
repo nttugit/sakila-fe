@@ -27,8 +27,10 @@ export default {
       try {
         // server a
         // const response = await fetch("http://localhost:3000/api/films/from-b");
+        console.log("api: ", APIs.FILM.LIST);
         const response = await this.$axios.get(APIs.FILM.LIST);
         this.films = response.data.data;
+        console.log("response", response.data.data);
 
         // if (response.ok) {
         //   this.films = await response.json();

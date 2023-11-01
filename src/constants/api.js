@@ -8,7 +8,8 @@ const APIs = {
         LIST: 'api/actors'
     },
     FILM: {
-        LIST: 'api/films/from-b'
+        LIST: 'api/films',
+        // LIST_FROM_B: 'api/films/from-b'
     }
 }
 

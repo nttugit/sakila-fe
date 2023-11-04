@@ -12,7 +12,9 @@ const APIs = {
         // LIST_FROM_B: 'api/films/from-b'
     },
     CATEGORY: {
-        LIST: 'api/categories'
+        LIST: 'api/categories',
+        LIST_SP: 'api/categories/sp',
+        LIST_LP: 'api/categories/lp',
     },
 }
 

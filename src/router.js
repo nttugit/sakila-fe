@@ -6,7 +6,10 @@ import Film from './components/Film.vue';
 // import isTokenExpired from './utils/isTokenExpired'
 // import axios from 'axios';
 import Actor from './components/Actor.vue';
-import Category from './components/Category.vue';
+// import CategoryShortPolling from './components/CategoryShortPolling.vue';
+// import CategoryLongPolling from './components/CategoryLongPolling.vue';
+// import CategoryWebSocket from './components/CategoryWebSocket.vue';
+import CategorySSE from './components/CategorySSE.vue';
 import store from './store/auth.js';
 
 const requireAuth = (to, from, next) => {
@@ -48,7 +51,10 @@ const routes = [
     },
     {
         path: '/categories',
-        component: Category,
+        component: CategorySSE,
+        // component: CategoryWebSocket,// worked
+        // component: CategoryLongPolling, // worked
+        // component: CategoryShortPolling, // worked 
         name: 'Category',
         // beforeEnter: requireAuth,
     },
